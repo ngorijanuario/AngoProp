@@ -70,7 +70,7 @@ public class Propriedades {
         return x;
     }
     public void Display(){
-        System.out.println("Dwralhes da Propiedade");
+        System.out.println("Deralhes da Propiedade");
         System.out.println("ID da propiedade: "+ this.IdPrpop);
         System.out.println("Apelido da propiedade: "+ this.apelidoProp);
         System.out.println("Tipo de propiedade: "+ this.tipoDePropiedade);
