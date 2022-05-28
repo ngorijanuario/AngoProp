@@ -3,12 +3,16 @@ package angoprop;
 public class AngoProp {
 
     public static void main(String[] args) {
-        /*
-        Teste
         Propriedades a = new Propriedades();
-        System.out.println(a.propiedades());
-        System.out.println(a.getTipoDePropiedade());
-        */
+        
+        System.out.println(" -------- Menu -------");
+        System.out.println("1 - Adicionar Imovel");
+        System.out.println("2 - Procurar Imovel");
+        System.out.println("3 - Calcular Preço");
+        System.out.println("4 - Mostrar mais Cara");
+        System.out.println("5 - Mostrar todos Imoveis");
+        System.out.println("6 - Organiza Imovel");
+        System.out.println("----------------------");
     }
     
 }

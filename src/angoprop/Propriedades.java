@@ -62,4 +62,18 @@ public class Propriedades {
     public double getTamanhoDaPropiedade(){
         return this.tamanhoDaPropiedade;
     }
+    public double calcularPreco( double x){
+        double residencial, comercial,industrial;
+        residencial = Math.cbrt(this.tamanhoDaPropiedade/2.5)*120;
+        comercial = Math.cbrt(this.tamanhoDaPropiedade/1.9)*135;
+        industrial = Math.cbrt(this.tamanhoDaPropiedade/1.5)*145;
+        return x;
+    }
+    public void Display(){
+        System.out.println("Dwralhes da Propiedade");
+        System.out.println("ID da propiedade: "+ this.IdPrpop);
+        System.out.println("Apelido da propiedade: "+ this.apelidoProp);
+        System.out.println("Tipo de propiedade: "+ this.tipoDePropiedade);
+        System.out.println("Tamanho da propiedade: "+ this.tamanhoDaPropiedade);
+    }
 }
