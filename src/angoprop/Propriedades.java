@@ -2,13 +2,16 @@ package angoprop;
 import java.util.*;
 //@author Ngori Januário
 public class Propriedades {
-    private int IdPrpop = 0;
-    private String apelidoProp = "VAZIO";
-    private String tipoDePropiedade = "VAZIO";
-    private Double tamanhoDaPropiedade = 0.0;
+    private int IdPrpop;
+    private String apelidoProp;
+    private String tipoDePropiedade;
+    private Double tamanhoDaPropiedade;
     
     Propriedades(){
-        
+        this.IdPrpop = 0;
+        this.apelidoProp = "VAZIO";
+        this.tipoDePropiedade = "VAZIO";
+        this.tamanhoDaPropiedade = 0.0;
     }
     public String propiedades(){
         Random tipodepropiedades  = new Random();        
@@ -70,7 +73,7 @@ public class Propriedades {
         return x;
     }
     public void Display(){
-        System.out.println("Deralhes da Propiedade");
+        System.out.println("Detalhes da Propiedade");
         System.out.println("ID da propiedade: "+ this.IdPrpop);
         System.out.println("Apelido da propiedade: "+ this.apelidoProp);
         System.out.println("Tipo de propiedade: "+ this.tipoDePropiedade);
