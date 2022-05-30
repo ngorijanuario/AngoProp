@@ -72,7 +72,7 @@ public class Propriedades {
         industrial = Math.cbrt(this.tamanhoDaPropiedade/1.5)*145;
         return x;
     }
-    public void Display(){
+    public void Display(String[] args){
         System.out.println("Detalhes da Propiedade");
         System.out.println("ID da propiedade: "+ this.IdPrpop);
         System.out.println("Apelido da propiedade: "+ this.apelidoProp);
