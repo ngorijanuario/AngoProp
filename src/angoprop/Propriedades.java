@@ -13,6 +13,12 @@ public class Propriedades {
         this.tipoDePropiedade = "VAZIO";
         this.tamanhoDaPropiedade = 0.0;
     }
+    Propriedades(int id, String apelido, String tipo, double tamanho){
+        this.IdPrpop = id;
+        this.apelidoProp = apelido;
+        this.tipoDePropiedade = tipo;
+        this.tamanhoDaPropiedade = tamanho;
+    }
     public String propiedades(){
         Random tipodepropiedades  = new Random();        
         String elemento[] = {"Comercial","Residencial","Industrial"}; 
