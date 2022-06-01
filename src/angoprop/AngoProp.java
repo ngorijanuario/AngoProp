@@ -11,7 +11,7 @@ public class AngoProp {
         List<Propriedades> dados = new ArrayList<Propriedades>();
         Propriedades a = new Propriedades();
         //Declaração de variaveis
-        int opcao;
+        String opcao;
         int identidade;
         String apelido;
         String tipo;
@@ -24,9 +24,9 @@ public class AngoProp {
         System.out.printf("1 - Adicionar Imovel\n2 - Procurar Imovel\n3 - Calcular Preço\n4 - Mostrar mais Cara\n5 - Mostrar todos Imoveis\n6 - Organiza Imovel\n");
         System.out.println("----------------------");
         System.out.printf("Escolhe uma das opções para continuar\nResposta: ");
-        opcao = entrada.nextInt();
+        opcao = entrada.next();
         switch(opcao){
-            case 1:
+            case "1":
                 System.out.println("1 - Adicionar Imovel");
                 System.out.printf("ID da Propiedade: ");
                 identidade = entrada.nextInt();
@@ -38,31 +38,61 @@ public class AngoProp {
                 tamanho = entrada.nextDouble();
                 dados.add(new Propriedades(identidade, apelido, tipo,tamanho));
                 break;
-            case 2:
+            case "2":
                 System.out.println("2 - Procura Imovel");
-                break;
-            case 3:
-                System.out.println("3 - Calcular Preço");
-                break;
-            case 4:
-                System.out.println("4 - Mostrar mais Cara");
-                break;
-            case 5:
-                System.out.println("5 - Mostrar todos Imoveis");
+                System.out.println("----------------------");
+                System.out.printf("Digite o ID: ");
+                identidade = entrada.nextInt();
                 for (Propriedades propriedades: dados) {
-                    System.out.println("ID: "+propriedades.getIdProp()+", Apelido: "+propriedades.getApelidoProp()+ ", Tipo "+propriedades.getTipoDePropiedade()+", Tamanho: "+propriedades.getTamanhoDaPropiedade());
+                    if(identidade == propriedades.getIdProp()){
+                        System.out.println("Dados encontrados");
+                        System.out.println("ID: "+propriedades.getIdProp()+", Apelido: "+propriedades.getApelidoProp()+ ", Tipo "+propriedades.getTipoDePropiedade()+", Tamanho: "+propriedades.getTamanhoDaPropiedade());
+                        break;
+                    }
+                    else{
+                        System.out.println("ALERTA: Nenhum dado encontrado");
+                    }
+                }
+                
+                break;
+            case "3":
+                System.out.println("3 - Calcular Preço");
+                System.out.printf("Digite o ID do imovel: ");
+                identidade = entrada.nextInt();
+                for (Propriedades propriedades: dados) {
+                    if(identidade == propriedades.getIdProp()){
+                        a.calcularPreco(propriedades.getTipoDePropiedade(), propriedades.getTamanhoDaPropiedade());
+                        break;
+                    }
+                    else{
+                        System.out.println("ALERTA: Nenhum dado encontrado");
+                    }
                 }
                 break;
-            case 6:
+            case "4":
+                System.out.println("4 - Mostrar mais Cara");
+                break;
+            case "5":
+                System.out.println("5 - Mostrar todos Imoveis");
+                if(dados.isEmpty()){
+                    System.out.println("ALERTA: Aindão não foram adicionados imoveis");
+                }else{
+                    for (Propriedades propriedades: dados) {
+                    System.out.println("ID: "+propriedades.getIdProp()+", Apelido: "+propriedades.getApelidoProp()+ ", Tipo "+propriedades.getTipoDePropiedade()+", Tamanho: "+propriedades.getTamanhoDaPropiedade());
+                }
+                }
+                
+                break;
+            case "6":
                 System.out.println("6 - Organiza Imovel");
-                //Collections.sort(dados, new Propriedades());
+                
                 break;
             default:
                 System.out.println("ALERTA: Opção invalida, o programa será terminado.");
                 System.exit(0);
                 break;
             }
-            System.out.printf("Digite 'S' pra continuar e 'N' para terminar\nResposta: ");
+            System.out.printf("'S' para abrir o Menu e 'N' para terminar o programa\nResposta: ");
             String cont;
             cont=entrada.next();
             switch(cont){
@@ -70,9 +100,11 @@ public class AngoProp {
                     estado = false;
                 break;
                 case "N":
+                    System.out.println("ALERTA: O programa será terminado.");
                     estado = true;
                 break;
                 default:
+                    System.out.println("ALERTA: Opção invalida, o programa será terminado.");
                     estado = true;
                 break;
             }
