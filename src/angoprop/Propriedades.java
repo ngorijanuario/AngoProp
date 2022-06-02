@@ -71,19 +71,18 @@ public class Propriedades {
     public double getTamanhoDaPropiedade(){
         return this.tamanhoDaPropiedade;
     }
-    public void calcularPreco(String x, double y){
-        double residencial, comercial,industrial;
+    public double calcularPreco(String x, double y){
+        double resultado=0.0;
         if(x == "Residencial"){
-            residencial = Math.cbrt(y/2.5)*120;
-            System.out.printf("O preço da propriedade é: %.2f AOA \n",residencial);
+            resultado = Math.pow(Math.sqrt(y/2.5),3)*120;
         }
         else if(x == "Comercial"){
-            comercial = Math.cbrt(y/1.9)*135;
-            System.out.printf("O preço da propriedade é: %.2f AOA \n",comercial);
+            resultado = Math.pow(Math.sqrt(y/1.9),3)*135;
         }else if(x == "Industrial"){
-            industrial = Math.cbrt(y/1.5)*145;
-            System.out.printf("O preço da propriedade é: %.2f AOA\n",industrial);
+            resultado = Math.pow(Math.sqrt(y/1.5),3)*145;
+            
         }
+        return resultado;
     }
     public void Display(){
         System.out.println("Detalhes da Propiedade");
