@@ -36,13 +36,39 @@ public class AngoProp {
                         for(int a = 0; a< dadosEmArray.length; a++){
                             System.out.printf("---- Dados do %dº Imovel ----\n",(a+1));
                             System.out.printf("ID da Propiedade: ");
-                            identidade = entrada.nextInt();
+                            identidadeDApropriedade = entrada.next();
+                            //Convertendo o valor para inteiro
+                            if(!identidadeDApropriedade.substring(1).matches("[0-9]*")){
+                                System.out.printf("\nALERTA: Caso voltar digitar ID que não seja um inteiro o programa será terminado.");
+                                System.out.printf("\nID da Propiedade: ");
+                                identidadeDApropriedade = entrada.next();
+                                if(!identidadeDApropriedade.substring(1).matches("[0-9]*")){System.exit(0);
+                                }else{identidade = Integer.parseInt(identidadeDApropriedade);if(identidade<0){identidade = identidade*-1;
+                                System.out.printf("ALERTA: Os IDs não podem ser negativos, convertemos ID para positivo.\n assim ao pesquisar o ID digite apenas o número.\n");}
+                                }
+                            }else{
+                                identidade = Integer.parseInt(identidadeDApropriedade);if(identidade<0){identidade = identidade*-1;
+                                System.out.printf("ALERTA: Os IDs não podem ser negativos, convertemos ID para positivo.\n assim ao pesquisar o ID digite apenas o número.\n");
+                                }
+                            }
+                            //Fim da conversão
                             System.out.printf("Apelido da Propiedade: ");
                             apelido = entrada.next();
                             System.out.printf("Tipo da Propiedade: %s \n",dadosPrimitivos.propiedades());
                             tipo = dadosPrimitivos.propiedades();
                             System.out.printf("Tamanho da Propiedade: ");
-                            tamanho = entrada.nextDouble();
+                            tamanhodaPropriedade = entrada.next();
+                            while(conversaoTamanho){
+                                try{
+                                    tamanho = Integer.parseInt(identidadeDApropriedade);
+                                    conversaoTamanho = false;
+                                }catch(Exception e){
+                                    System.out.printf("\nALERTA: Digite um tamanho valido");
+                                    System.out.printf("\nTamanho da Propiedade: ");
+                                    tamanho = entrada.nextInt();
+                                    break;
+                                }
+                            }
                             dadosEmArray[a] = new Propriedades(identidade,apelido,tipo,tamanho);
                         }
                         controle = false;
@@ -57,15 +83,24 @@ public class AngoProp {
                 }else{
                     System.out.println("----------------------");
                     System.out.printf("Digite o ID: ");
-                    identidade = entrada.nextInt();
-                    for(Propriedades propriedades: dadosEmArray) {
-                        if(identidade == propriedades.getIdProp()){
-                            System.out.println("Dados encontrados");
-                            System.out.println("ID: "+propriedades.getIdProp()+", Apelido: "+propriedades.getApelidoProp()+ ", Tipo "+propriedades.getTipoDePropiedade()+", Tamanho: "+propriedades.getTamanhoDaPropiedade());
-                        }else{
-                            System.out.println("ALERTA: Nenhum dado encontrado");
+                    identidadeDApropriedade = entrada.next();
+                    //Convertendo o valor para inteiro
+                    if(!identidadeDApropriedade.substring(1).matches("[0-9]*")){
+                        System.out.printf("\nALERTA: Caso voltar digitar ID que não seja um inteiro o programa será terminado.");
+                        System.out.printf("\nID da Propiedade: ");
+                        identidadeDApropriedade = entrada.next();
+                        if(!identidadeDApropriedade.substring(1).matches("[0-9]*")){System.exit(0);
+                        }else{identidade = Integer.parseInt(identidadeDApropriedade);if(identidade<0){identidade = identidade*-1;}
                         }
-                        break;
+                    }else{
+                        identidade = Integer.parseInt(identidadeDApropriedade);if(identidade<0){identidade = identidade*-1;}
+                    }
+                    //Fim da conversão
+                    for ( int i = 0; i < dadosEmArray.length; i++) {
+                        if (dadosEmArray[i].getIdProp() == identidade) {
+                            System.out.println("Dados encontrados");
+                            System.out.println("ID: "+dadosEmArray[i].getIdProp()+", Apelido: "+dadosEmArray[i].getApelidoProp()+ ", Tipo "+dadosEmArray[i].getTipoDePropiedade()+", Tamanho: "+dadosEmArray[i].getTamanhoDaPropiedade());
+                        }
                     }
                 }
                 break;
@@ -76,25 +111,21 @@ public class AngoProp {
                 }else{
                     System.out.printf("Digite o ID do imovel: ");
                     identidadeDApropriedade = entrada.next();
-                    while(conversaoID){
-                        try{
-                            identidade = Integer.parseInt(identidadeDApropriedade);
-                            conversaoID = false;
-                        }catch(Exception e){
-                            System.out.printf("\nALERTA: Digite um ID valido");
-                            System.out.printf("\nID da Propiedade: ");
-                            identidade = entrada.nextInt();
-                            break;
+                    //Convertendo o valor para inteiro
+                    if(!identidadeDApropriedade.substring(1).matches("[0-9]*")){
+                        System.out.printf("\nALERTA: Caso voltar digitar ID que não seja um inteiro o programa será terminado.");
+                        System.out.printf("\nID da Propiedade: ");
+                        identidadeDApropriedade = entrada.next();
+                        if(!identidadeDApropriedade.substring(1).matches("[0-9]*")){System.exit(0);
+                        }else{identidade = Integer.parseInt(identidadeDApropriedade);if(identidade<0){identidade = identidade*-1;}
                         }
+                    }else{
+                        identidade = Integer.parseInt(identidadeDApropriedade);if(identidade<0){identidade = identidade*-1;}
                     }
+                    //Fim da conversão
                     for (int a = 0; a< dadosEmArray.length; a++) {
                         if(identidade == dadosEmArray[a].getIdProp()){
                             System.out.printf("A Propriedade esta avaliada em: %.2f AOA \n",dadosPrimitivos.calcularPreco(dadosEmArray[a].getTipoDePropiedade(), dadosEmArray[a].getTamanhoDaPropiedade()));
-                            break;
-                        }
-                        else{
-                            System.out.println("ALERTA: Nenhum dado encontrado");
-                            break;
                         }
                     }
                 }
