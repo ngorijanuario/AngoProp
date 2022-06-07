@@ -21,7 +21,6 @@ public class AngoProp {
         double[] precos = new double[2];
         do{
             //Criando variaveis locais
-            boolean conversaoID = true,conversaoTamanho = true;
             String identidadeDApropriedade,tamanhodaPropriedade;
             //Criação de um menu dinamico
             System.out.println("--------- Menu --------");
@@ -58,17 +57,19 @@ public class AngoProp {
                             tipo = dadosPrimitivos.propiedades();
                             System.out.printf("Tamanho da Propiedade: ");
                             tamanhodaPropriedade = entrada.next();
-                            while(conversaoTamanho){
-                                try{
-                                    tamanho = Integer.parseInt(identidadeDApropriedade);
-                                    conversaoTamanho = false;
-                                }catch(Exception e){
-                                    System.out.printf("\nALERTA: Digite um tamanho valido");
-                                    System.out.printf("\nTamanho da Propiedade: ");
-                                    tamanho = entrada.nextInt();
-                                    break;
-                                }
+                            //Convertendo o valor para inteiro
+                            try{
+                                tamanho = Double.parseDouble(tamanhodaPropriedade.replace(',', '.'));
+                                if(tamanho<0){tamanho = tamanho*-1;
+                                System.out.printf("ALERTA: Os tamanhos não podem ser negativos, convertemos para positivo.\n");}
+                            }catch(Exception e){
+                                System.out.printf("\nALERTA: Digite um tamanho valido");
+                                System.out.printf("\nTamanho da Propiedade: ");
+                                tamanho = entrada.nextDouble();
+                                if(tamanho<0){tamanho = tamanho*-1;
+                                System.out.printf("ALERTA: Os tamanhos não podem ser negativos, convertemos para positivo.\n");}
                             }
+                            //Fim da conversão
                             dadosEmArray[a] = new Propriedades(identidade,apelido,tipo,tamanho);
                         }
                         controle = false;
@@ -79,7 +80,7 @@ public class AngoProp {
             case "2":
                 System.out.println("2 - Procura Imovel");
                 if(controle == true){
-                    System.out.println("ALERTA: Aindão não foram adicionados imoveis");
+                    System.out.println("ALERTA: Ainda não foram adicionados imoveis");
                 }else{
                     System.out.println("----------------------");
                     System.out.printf("Digite o ID: ");
@@ -125,7 +126,7 @@ public class AngoProp {
                     //Fim da conversão
                     for (int a = 0; a< dadosEmArray.length; a++) {
                         if(identidade == dadosEmArray[a].getIdProp()){
-                            System.out.printf("A Propriedade esta avaliada em: %.2f AOA \n",dadosPrimitivos.calcularPreco(dadosEmArray[a].getTipoDePropiedade(), dadosEmArray[a].getTamanhoDaPropiedade()));
+                            System.out.printf("A Propriedade está avaliada em: %.2f AOA \n",dadosPrimitivos.calcularPreco(dadosEmArray[a].getTipoDePropiedade(), dadosEmArray[a].getTamanhoDaPropiedade()));
                         }
                     }
                 }
@@ -133,7 +134,7 @@ public class AngoProp {
             case "4":
                 System.out.println("4 - Mostrar mais Cara");
                 if(controle == true){
-                    System.out.println("ALERTA: Aindão não foram adicionados imoveis");
+                    System.out.println("ALERTA: Ainda não foram adicionados imoveis");
                 }else{
                     double maior = Integer.MIN_VALUE;
                     for (int a = 0; a< dadosEmArray.length; a++) {
@@ -160,7 +161,7 @@ public class AngoProp {
             case "6":
                 System.out.println("6 - Organiza Imovel");
                 if(controle == true){
-                   System.out.println("ALERTA: Aindão não foram adicionados imoveis");
+                   System.out.println("ALERTA: Ainda não foram adicionados imoveis");
                 }else{
                     System.out.println("Organização por ID");
                     //Organizando os dados pelos IDs
